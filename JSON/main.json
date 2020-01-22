@@ -164,6 +164,14 @@
             "Max Sit-ups": "30",
             "Went to Gym": "no",
             "Other Activity": ""
+        },
+        "22-01-2020": {
+            "Push-ups": "40",
+            "Max push-ups": "20",
+            "Sit-ups": "60",
+            "Max Sit-ups": "20",
+            "Went to Gym": "yes",
+            "Other Activity": ""
         }
     }
 }
