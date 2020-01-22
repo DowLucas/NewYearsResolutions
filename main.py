@@ -32,7 +32,7 @@ class Resolutions:
     def getEntry(self, date):
         with open(self.full_dir) as j:
             data = json.load(j)
-            entries = data['Entries'][0]
+            entries = data['Entries']
             return entries[date]
 
 
@@ -42,20 +42,19 @@ class Resolutions:
 
         with open(self.full_dir) as j:
             data = json.load(j)
-            try:
-                if data["Entries"][0][Date]:
-                    raise Exception("Entry for today already exist!\n")
-            except:
-                pass
+            assert Date not in data["Entries"].keys(), 'Entry already exists!'
+
+            # Add Inputs here
             structure = {
-                Date: {
-                    'Push-ups': input('Number of push-ups: '),
-                    'Sit-ups': input('Number of sit-ups: '),
-                    'Went to Gym': input('Went to gym?: '),
-                }
+                'Push-ups': input('Number of push-ups: '),
+                'Max push-ups': input('Max push-ups: '),
+                'Sit-ups': input('Number of sit-ups: '),
+                'Max Sit-ups': input('Max Sit-ups: '),
+                'Went to Gym': input('Went to gym?: '),
+                'Other Activity': input('Other Activity?: ')
             }
 
-            data['Entries'].append(structure)
+            data['Entries'][Date] = structure
             j.close()
 
         with open(self.full_dir, 'w') as j:
@@ -67,6 +66,7 @@ class Resolutions:
         date = self.getDate()
         print(f'----- Update Entry -----\nCurrent Date: {date}')
         input_date = input('Please input date you wish to enter (format: dd-mm-yyyy) type "t" for today: ')
+
         if input_date == 't':
             entry = self.getEntry(date)
         else:
@@ -88,7 +88,7 @@ class Resolutions:
 
         with open(self.full_dir) as j:
             data = json.load(j)
-            data['Entries'][0][date] = entry
+            data['Entries'][date] = entry
             with open(self.full_dir, 'w') as j:
                 json.dump(data, j, indent=4)
 
