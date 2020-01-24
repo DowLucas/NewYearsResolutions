@@ -60,6 +60,33 @@ class Resolutions:
         with open(self.full_dir, 'w') as j:
             json.dump(data, j, indent=4)
 
+    def addDateEntry(self):
+        date = input('Please input date you wish to enter (format: dd-mm-yyyy) type "t" for today: ')
+        if date == "t":
+            self.addEntry()
+            return
+
+        with open(self.full_dir) as j:
+            data = json.load(j)
+            assert date not in data["Entries"].keys(), 'Entry already exists!'
+
+            # Add Inputs here
+            structure = {
+                'Push-ups': input('Number of push-ups: '),
+                'Max push-ups': input('Max push-ups: '),
+                'Sit-ups': input('Number of sit-ups: '),
+                'Max Sit-ups': input('Max Sit-ups: '),
+                'Went to Gym': input('Went to gym?: '),
+                'Other Activity': input('Other Activity?: ')
+            }
+
+            data['Entries'][date] = structure
+            j.close()
+
+        with open(self.full_dir, 'w') as j:
+            json.dump(data, j, indent=4)
+
+
 
 
     def updateEntry(self):
@@ -99,6 +126,7 @@ class Resolutions:
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Add/Update Entries for each day')
     parser.add_argument('--add', const='add', help='Add entry', action='store_const')
+    parser.add_argument('--dateadd', const='add', help="add entry based on date", action='store_const')
     parser.add_argument('--update', const='update', help='Update entry', action='store_const')
     parser.add_argument('--reset', const='reset', help='Update entry', action='store_const')
 
@@ -108,6 +136,8 @@ if __name__ == '__main__':
 
     if args.add:
         res.addEntry()
+    elif args.dateadd:
+        res.addDateEntry()
     elif args.update:
         res.updateEntry()
     elif args.reset:

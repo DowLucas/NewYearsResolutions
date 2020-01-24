@@ -166,11 +166,27 @@
             "Other Activity": ""
         },
         "22-01-2020": {
-            "Push-ups": "40",
+            "Push-ups": "80",
             "Max push-ups": "20",
-            "Sit-ups": "60",
+            "Sit-ups": "90",
             "Max Sit-ups": "20",
             "Went to Gym": "yes",
+            "Other Activity": ""
+        },
+        "23-01-2020": {
+            "Push-ups": "40",
+            "Max push-ups": "20",
+            "Sit-ups": "40",
+            "Max Sit-ups": "20",
+            "Went to Gym": "no",
+            "Other Activity": ""
+        },
+        "24-01-2020": {
+            "Push-ups": "110",
+            "Max push-ups": "30",
+            "Sit-ups": "110",
+            "Max Sit-ups": "30",
+            "Went to Gym": "no",
             "Other Activity": ""
         }
     }
