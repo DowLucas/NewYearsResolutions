@@ -54,8 +54,12 @@ def increaseFunction(x, y, A):
     K, T, L, B = get_sums(x, y)
     n = len(x)+1
     S = x[-1]+1
-    numerator = (A * m * n * S**2) + (A * m * B * n) - (A * m * S**2) - (2 * A * m * S * K) - (A * m * K**2) - (L * n) + (S * T) + (T * K)
-    denom = (n * S - S - K)
+    if m >= 0:
+        numerator = (A * m * n * S**2) + (A * m * B * n) - (A * m * S**2) - (2 * A * m * S * K) - (A * m * K**2) - (L * n) + (S * T) + (T * K)
+        denom = (n * S - S - K)
+    else:
+        numerator = -(m * n * S**2) - (m * B * n) + (m * S**2) + (2 * m * S * K) + (m * K**2) - (A * L * n) + (A * S * T) + (A * T * K)
+        denom = A * ((n * S) - S - K)
     newY = numerator/denom
     return newY
 
@@ -74,23 +78,27 @@ def tryLineBestFit_next_day(x, y, newValue):
     tryLineBestFit_next_day(x, y, newY)
 
 
-
 def line_best_fit(x, y):
     xSum, ySum, xySum, x2Sum = get_sums(x, y)
 
     b = (ySum*x2Sum - xSum*xySum) / (len(x)*x2Sum - xSum**2)
     m = (len(x)*xySum - xSum*ySum) / (len(x)*x2Sum - xSum**2)
-
+    #print(m, b)
     return m, b
 
-def graph_increase_options(x, y):
+def graph_increase_options(x, y, pos=True):
     plt.clf()
     As = np.arange(1, 3, 1/100)
-    
-    Ys = [increaseFunction(x, y, A) for A in As]
+    print(As)
+
+    if pos:
+        Ys = [increaseFunction(x, y, A) for A in As if increaseFunction(x, y, A) < 500]
+    else:
+        Ys = [increaseFunction(x, y, -A) for A in As if increaseFunction(x, y, A) < 500]
+    As = As[:len(Ys)]
     
     plt.plot(As, Ys)
-    plt.text(As[0], Ys[-1], f"Minimum to keep positive slope going: {int(Ys[0])}")
+    plt.text(As[0], Ys[-1], f"Minimum to not decrease slope: {int(Ys[0])}")
     plt.show()
 
 
@@ -125,12 +133,12 @@ def graph_progression(progression_dict, dates, see_future = False):
     Xs = np.arange(len(arr))
     num_push_ups_tomorrow(Xs, arr, increase_factor=2)
     #tryLineBestFit_next_day(time, arr, 96)
-    graph_increase_options(Xs, arr)
+    graph_increase_options(Xs, arr, pos=True if m >= 0 else False)
 
 
 data = load()
-prog, dates = get_progession("Max Sit-ups", data)
+prog, dates = get_progession("Sit-ups", data)
 
 
-graph_progression(prog, dates, True)
+graph_progression(prog, dates, False)
 
