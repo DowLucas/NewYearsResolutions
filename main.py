@@ -1,7 +1,7 @@
 import argparse
 import json
 from datetime import datetime
-import re
+from progession import *
 
 class Resolutions:
     dir = 'JSON'
@@ -20,7 +20,7 @@ class Resolutions:
                     ]
                 }
                 json.dump(structure, j, indent=4)
-        print('Reset complete...')
+            print('Reset complete...')
         quit()
 
 
@@ -135,10 +135,12 @@ if __name__ == '__main__':
     res = Resolutions()
 
     if args.add:
+        todays_goals(True)
         res.addEntry()
     elif args.dateadd:
         res.addDateEntry()
     elif args.update:
+        todays_goals(False)
         res.updateEntry()
     elif args.reset:
         res.reset()

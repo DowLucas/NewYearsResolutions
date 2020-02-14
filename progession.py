@@ -11,7 +11,7 @@ json_path = "JSON/main.json"
 def load():
     return json.load(open(json_path, "r"))
 
-def get_progession(property, data):
+def get_progession(property, data, on_add = False):
 
     data = data["Entries"]
     dates = []
@@ -37,9 +37,9 @@ def get_progession(property, data):
                 value = 0
         progression[property].append(value)
 
+    if on_add:
+        progression[property].pop(-1)
 
-
-    
     return progression, dates
 
 def get_sums(x, y):
@@ -101,6 +101,28 @@ def graph_increase_options(x, y, pos=True):
     plt.text(As[0], Ys[-1], f"Minimum to not decrease slope: {int(Ys[0])}")
     plt.show()
 
+def get_min_required_num(x, y, pos=True):
+    As = np.arange(1,2)
+    if pos:
+        Y = [(A, int(increaseFunction(x, y, A))) for A in As if increaseFunction(x, y, A) < 500]
+    else:
+        Y = [(A, int(increaseFunction(x, y, -A))) for A in As if increaseFunction(x, y, A) < 500]
+
+    return Y[0]
+
+def get_progression_info(progression_dict):
+
+    property = list(progression_dict.keys())[0]
+    arr = np.array(progression_dict[property])
+    time = np.arange(len(arr))
+    m, b = line_best_fit(time, arr)
+
+    Xs = np.arange(len(arr))
+
+    factor, num = get_min_required_num(Xs, arr, pos=True if m >= 0 else False)
+
+    return num
+
 
 def graph_progression(progression_dict, dates, see_future = False):
 
@@ -129,16 +151,19 @@ def graph_progression(progression_dict, dates, see_future = False):
 
     plt.show()
 
-
     Xs = np.arange(len(arr))
     num_push_ups_tomorrow(Xs, arr, increase_factor=2)
     #tryLineBestFit_next_day(time, arr, 96)
     graph_increase_options(Xs, arr, pos=True if m >= 0 else False)
 
+def todays_goals(on_add):
 
-data = load()
-prog, dates = get_progession("Sit-ups", data)
+    data = load()
+    properties = ["Sit-ups", "Push-ups", "Max push-ups", "Max Sit-ups"]
 
-
-graph_progression(prog, dates, False)
-
+    print("\n------- Todays Minimum Requirements -------\n")
+    for prop in properties:
+        prog, dates = get_progession(prop, data, on_add=False if on_add else True)
+        num = get_progression_info(prog)
+        print(f"{prop}: {num}")
+    print()
