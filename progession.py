@@ -167,3 +167,12 @@ def todays_goals(on_add):
         num = get_progression_info(prog)
         print(f"{prop}: {num}")
     print()
+
+def testing():
+    data = load()
+    prop = "Max Sit-ups"
+    on_add = False
+    prog, dates = get_progession(prop, data, on_add=False if on_add else True)
+
+    graph_progression(prog, dates)
+

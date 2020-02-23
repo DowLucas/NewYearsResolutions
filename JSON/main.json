@@ -350,10 +350,82 @@
             "Other Activity": ""
         },
         "14-02-2020": {
-            "Push-ups": "30",
+            "Push-ups": "155",
+            "Max push-ups": "35",
+            "Sit-ups": "130",
+            "Max Sit-ups": "40",
+            "Went to Gym": "yes",
+            "Other Activity": ""
+        },
+        "15-02-2020": {
+            "Push-ups": "155",
+            "Max push-ups": "40",
+            "Sit-ups": "150",
+            "Max Sit-ups": "40",
+            "Went to Gym": "no",
+            "Other Activity": ""
+        },
+        "16-02-2020": {
+            "Push-ups": "140",
             "Max push-ups": "30",
-            "Sit-ups": "30",
+            "Sit-ups": "130",
+            "Max Sit-ups": "40",
+            "Went to Gym": "yes",
+            "Other Activity": ""
+        },
+        "17-02-2020": {
+            "Push-ups": "140",
+            "Max push-ups": "30",
+            "Sit-ups": "150",
+            "Max Sit-ups": "40",
+            "Went to Gym": "yes",
+            "Other Activity": ""
+        },
+        "18-02-2020": {
+            "Push-ups": "150",
+            "Max push-ups": "30",
+            "Sit-ups": "140",
+            "Max Sit-ups": "40",
+            "Went to Gym": "no",
+            "Other Activity": ""
+        },
+        "19-02-2020": {
+            "Push-ups": "110",
+            "Max push-ups": "30",
+            "Sit-ups": "120",
             "Max Sit-ups": "30",
+            "Went to Gym": "yes",
+            "Other Activity": ""
+        },
+        "20-02-2020": {
+            "Push-ups": "140",
+            "Max push-ups": "30",
+            "Sit-ups": "140",
+            "Max Sit-ups": "40",
+            "Went to Gym": "no",
+            "Other Activity": ""
+        },
+        "21-02-2020": {
+            "Push-ups": "150",
+            "Max push-ups": "30",
+            "Sit-ups": "160",
+            "Max Sit-ups": "40",
+            "Went to Gym": "no",
+            "Other Activity": ""
+        },
+        "22-02-2020": {
+            "Push-ups": "150",
+            "Max push-ups": "30",
+            "Sit-ups": "160",
+            "Max Sit-ups": "40",
+            "Went to Gym": "no",
+            "Other Activity": ""
+        },
+        "23-02-2020": {
+            "Push-ups": "60",
+            "Max push-ups": "30",
+            "Sit-ups": "70",
+            "Max Sit-ups": "40",
             "Went to Gym": "yes",
             "Other Activity": ""
         }
