@@ -125,7 +125,7 @@ def get_progression_info(progression_dict):
 
 
 def graph_progression(progression_dict, dates, see_future = False):
-
+    print(list(progression_dict.keys()))
     property = list(progression_dict.keys())[0]
     arr = np.array(progression_dict[property])
     time = np.arange(len(arr))
@@ -168,11 +168,12 @@ def todays_goals(on_add):
         print(f"{prop}: {num}")
     print()
 
-def testing():
+def F():
     data = load()
-    prop = "Max Sit-ups"
+    prop = "Max push-ups"
     on_add = False
     prog, dates = get_progession(prop, data, on_add=False if on_add else True)
 
     graph_progression(prog, dates)
+
 
